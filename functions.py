@@ -1,3 +1,7 @@
+import math
+import threading
+import time
+
 #returns number n or below with longest collatz sequence
 def longestCollatz(n):
     answers = {1:1}
@@ -43,8 +47,28 @@ def dynamicFibonacciEvenSum(limit, fibonaccis = [0,1]):
     return total
 
 
+# Brute force for 3. greatest prime under a number. could be optimized but got it
+def primesUnder(n):
+    primes = []
+    for i in range(2, n):
+        isPrime = True
+        for prime in primes:
+            if i % prime == 0:
+                isPrime = False
+                break
+        if isPrime:
+            primes.append(i)
 
-        
+    return primes
+
+def greatestPrimeFactor(n):
+    primes = primesUnder(math.floor(math.sqrt(n)))
+    i = -1
+    while n % primes[i] != 0:
+        i -= 1
+    return primes[i]
+
+print(greatestPrimeFactor(600851475143))
 
     
     
