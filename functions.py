@@ -112,7 +112,7 @@ def largestPalindrome(n1, n2):
 
     return largest
         
-        
+
 def isPalindrome(word):
     stack = []
 
@@ -124,6 +124,28 @@ def isPalindrome(word):
             return False
         
     return True
+
+# 5 smallest number divisible by all numbers from 1-20
+def smallestProduct(n):
+    factors = [i for i in range(20, 10, -1)]
+    answer = 2520
+
+    while True:
+        good = False
+        answer += 2520
+        for i in factors:
+            temp = answer % i
+            if temp != 0:
+                break
+            if i == 11:
+                good = True
+        if good:
+            return answer
+                    
+
+    return answer
+
+
 
 
     
