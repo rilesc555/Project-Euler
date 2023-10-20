@@ -47,7 +47,7 @@ def dynamicFibonacciEvenSum(limit, fibonaccis = [0,1]):
     return total
 
 
-# Brute force for 3. greatest prime under a number. could be optimized but got it
+# Brute force for 3. greatest prime factor of a number. could be optimized but got it
 def primesUnder(n):
     primes = []
     for i in range(2, n):
@@ -68,7 +68,63 @@ def greatestPrimeFactor(n):
         i -= 1
     return primes[i]
 
-print(greatestPrimeFactor(600851475143))
+
+# 4. find largest palindrome product of 2 3-digit numbers. Might have some unnecessary code, but it's quick
+def largestPalindrome(n1, n2):
+ 
+    largest = 0
+    left, right = n1, n2 
+    tested = []
+    largestLeft, largestRight = 0, 0
+
+    while True:
+        if left < 100:
+            break
+        if right <= 99:
+            right = n2
+            left -= 1
+            if left * right < largest:
+                break
+        if left * right < largest:
+            left -= 1
+            right = n2
+            if left * right < largest:
+                break
+        if [left,right] in tested:
+            print(left, right, "already in tested")
+            right -= 1
+            continue
+        print(left, right)
+        answer = left * right
+        answerString = str(answer)
+        tested.append([right, left])
+        if isPalindrome(answerString):
+            largest = max(largest, answer)
+            print(answer, "is a palindrome")
+            print("Current Largest is", largest)
+
+            if largest == answer:
+                largestLeft, largestRight = left, right
+            left -= 1
+            right = n2
+            continue
+        right -= 1
+
+    return largest
+        
+        
+def isPalindrome(word):
+    stack = []
+
+    for i in word:
+        stack.append(i)
+
+    for i in range(len(word) // 2):
+        if word[i] != stack.pop():
+            return False
+        
+    return True
+
 
     
     
