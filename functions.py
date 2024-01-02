@@ -125,7 +125,8 @@ def isPalindrome(word):
         
     return True
 
-# 5 smallest number divisible by all numbers from 1-20
+# 5 smallest number divisible by all numbers from 1-20. We know 2520 is smallest number divisible by 1-20, 
+# so keep checking multiples of that for being divisble by 11-20 until answer is found
 def smallestProduct(n):
     factors = [i for i in range(20, 10, -1)]
     answer = 2520
@@ -144,6 +145,18 @@ def smallestProduct(n):
                     
 
     return answer
+
+def sumSquareDifference(n):
+    total = 0
+
+    sum = 1
+
+    for i in range(2, n + 1):
+        temp = i * sum
+        total += 2 * (temp)
+        sum += i
+
+    print(total)
 
 
 
